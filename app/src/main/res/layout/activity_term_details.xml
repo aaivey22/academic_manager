@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".UI.TermDetails">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="300dp"
