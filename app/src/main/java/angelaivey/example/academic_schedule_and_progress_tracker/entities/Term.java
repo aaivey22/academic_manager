@@ -20,7 +20,38 @@ public class Term {
     }
 
     public Term() {
+    }
 
+    public int getTermID() {
+        return termID;
+    }
+
+    public void setTermID(int termID) {
+        this.termID = termID;
+    }
+
+    public String getTermTitle() {
+        return termTitle;
+    }
+
+    public void setTermTitle(String termTitle) {
+        this.termTitle = termTitle;
+    }
+
+    public String getTermStartDate() {
+        return termStartDate;
+    }
+
+    public void setTermStartDate(String termStartDate) {
+        this.termStartDate = termStartDate;
+    }
+
+    public String getTermEndDate() {
+        return termEndDate;
+    }
+
+    public void setTermEndDate(String termEndDate) {
+        this.termEndDate = termEndDate;
     }
 }
 
