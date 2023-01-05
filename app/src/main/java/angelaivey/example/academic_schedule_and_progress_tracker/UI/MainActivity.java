@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = findViewById(R.id.button);
-        Term term = new Term(0, "Term 1", "02/15/2018", "02/01/2023");
-        Repository repository = new Repository(getApplication());
-        repository.insert(term);
+        /* Term term = new Term(0, "Term 1", "02/15/2018", "02/01/2023");
+        //Repository repository = new Repository(getApplication());
+        //repository.insert(term); */
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
