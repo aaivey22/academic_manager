@@ -20,6 +20,6 @@ public interface TermDAO {
     void update(Term term);
     @Delete
     void delete(Term term);
-    @Query("SELECT * FROM TERMS ORDER BY termID ASC")
+    @Query("SELECT * FROM terms ORDER BY termID ASC")
     List<Term> getAllTerms();
 }
