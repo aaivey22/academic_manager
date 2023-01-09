@@ -1,6 +1,7 @@
 package angelaivey.example.academic_schedule_and_progress_tracker.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -10,17 +11,27 @@ import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
+import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
+import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class TermList extends AppCompatActivity {
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
-        RecyclerView recyclerview = findViewById(R.id.termrecyclerview);
-
+        RecyclerView recyclerView = findViewById(R.id.termrecyclerview);
+        final TermAdapter termAdapter = new TermAdapter(this);
+        recyclerView.setAdapter(termAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<Term> allTerms = repository.getAllTerms();
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        termAdapter.setTerms(allTerms);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
