@@ -1,6 +1,8 @@
 package angelaivey.example.academic_schedule_and_progress_tracker.entities;
 
 //import kotlin.experimental.ExperimentalTypeInference;
+import android.text.Editable;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -19,7 +21,7 @@ public class Term {
         this.termEndDate = termEndDate;
     }
 
-    public Term() {
+    public Term(int i, Editable text) {
     }
 
     public int getTermID() {
