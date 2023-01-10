@@ -53,13 +53,13 @@ public class TermDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (id == -1) {
-                    term = new Term(0,editTitle.getText());
+                    term = new Term(0,editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
-                    Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                 } else {
-                    term = new Term(id, editTitle.getText());
+                    term = new Term(id, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
-                    Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
                 }
             }
         });

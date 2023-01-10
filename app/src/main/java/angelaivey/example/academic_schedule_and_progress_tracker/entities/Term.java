@@ -21,7 +21,7 @@ public class Term {
         this.termEndDate = termEndDate;
     }
 
-    public Term(int i, Editable text) {
+    public Term() {
     }
 
     public int getTermID() {
