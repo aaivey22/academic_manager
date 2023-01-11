@@ -1,6 +1,8 @@
 package angelaivey.example.academic_schedule_and_progress_tracker.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +49,11 @@ public class TermDetails extends AppCompatActivity {
         editEnd.setText(end);
 
         repository = new Repository(getApplication());
-
+        RecyclerView recyclerView = findViewById(R.id.courserecyclerview);
+        repository = new Repository(getApplication());
+        final CourseAdapter courseAdapter = new CourseAdapter(this);
+        recyclerView.setAdapter(courseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.saveterm);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
