@@ -27,14 +27,15 @@ public class TermDetails extends AppCompatActivity {
     String end;
 
     int id;
+    int numCourses;
     Term term;
+    Term currentTerm;
     Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
-        //id = getIntent().getIntExtra("id", -1);
         editTitle = findViewById(R.id.termtitle);
         editStart = findViewById(R.id.termstart);
         editEnd = findViewById(R.id.termend);
@@ -75,7 +76,8 @@ public class TermDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TermDetails.this, TermList.class);
+                Intent intent = new Intent(TermDetails.this, CourseList.class);
+                intent.putExtra("termID", id);
                 startActivity(intent);
             }
         });

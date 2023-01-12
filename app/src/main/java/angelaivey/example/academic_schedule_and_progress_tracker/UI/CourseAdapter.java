@@ -18,12 +18,14 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     class CourseViewHolder extends RecyclerView.ViewHolder {
-        private final TextView courseItemView;
+        private final TextView courseItemTitle;
+        private final TextView courseItemInstructor;
 
-        private CourseViewHolder(View itemview) {
-            super(itemview);
-            courseItemView = itemview.findViewById(R.id.textViewcoursetitle);
-            itemview.setOnClickListener(new View.OnClickListener() {
+        private CourseViewHolder(View itemView) {
+            super(itemView);
+            courseItemTitle = itemView.findViewById(R.id.textViewcoursetitle);
+            courseItemInstructor = itemView.findViewById(R.id.textViewcourseinstructor);
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
@@ -51,19 +53,22 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @NonNull
     @Override
-    public CourseAdapter.CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.term_list_item, parent, false);
+    public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
         return new CourseViewHolder((itemView));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         if (mCourses != null) {
             Course current = mCourses.get(position);
             String title = current.getCourseTitle();
-            holder.courseItemView.setText(title);
+            String instructor = current.getCourseInstructorName();
+            holder.courseItemTitle.setText(title);
+            holder.courseItemInstructor.setText(instructor);
         } else {
-            holder.courseItemView.setText("No Course Title");
+            holder.courseItemTitle.setText("No Course Title");
+            holder.courseItemInstructor.setText("No Course Instructor");
         }
 
     }
