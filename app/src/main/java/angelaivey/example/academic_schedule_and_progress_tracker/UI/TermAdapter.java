@@ -17,11 +17,16 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
     class TermViewHolder extends RecyclerView.ViewHolder {
-        private final TextView termItemView;
+        private final TextView termItemTitle;
+        private final TextView termItemStart;
+        private final TextView termItemEnd;
 
         private TermViewHolder(View itemView) {
             super(itemView);
-            termItemView = itemView.findViewById(R.id.textView2);
+            termItemTitle = itemView.findViewById(R.id.textViewtermtitle);
+            termItemStart = itemView.findViewById(R.id.textViewtermstart);
+            termItemEnd = itemView.findViewById(R.id.textViewtermend);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -49,27 +54,28 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
     @NonNull
     @Override
-    public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.term_list_item, parent, false);
         return new TermViewHolder((itemView));
     }
 
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
-        if(mTerms!=null) {
-            Term current=mTerms.get(position);
-            String title= current.getTermTitle();
-            holder.termItemView.setText(title);
-        }
-        else {
-            holder.termItemView.setText("No Term Title");
+        if (mTerms != null) {
+            Term current = mTerms.get(position);
+            String title = current.getTermTitle();
+            String start = current.getTermStartDate();
+            String end = current.getTermEndDate();
+            holder.termItemTitle.setText(title);
+            holder.termItemStart.setText(start);
+            holder.termItemEnd.setText(end);
+
+        } else {
+            holder.termItemTitle.setText("No Term Title");
+            holder.termItemStart.setText("No Term Start Date");
+            holder.termItemEnd.setText("No Term End Date");
         }
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return mTerms.size();
     }
 
     public void setTerms(List<Term> terms) {
@@ -77,4 +83,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         notifyDataSetChanged();
     }
 
+    @Override
+    public int getItemCount() {
+        return mTerms.size();
+    }
 }
