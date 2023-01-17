@@ -7,35 +7,44 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Guiding Star"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Academic_schedule_and_progress_tracker"
         tools:targetApi="31">
         <activity
             android:name=".UI.AssessmentDetails"
-            android:exported="false">
+            android:exported="false"
+            android:label="Assessment Details"
+            android:parentActivityName=".UI.AssessmentList">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".UI.AssessmentList"
-            android:exported="false">
+            android:exported="false"
+            android:label="Assessment List"
+            android:parentActivityName=".UI.CourseDetails">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".UI.CourseDetails"
-            android:exported="false">
+            android:exported="false"
+            android:label="Course Details"
+            android:parentActivityName=".UI.CourseList">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".UI.CourseList"
-            android:exported="false">
+            android:exported="false"
+            android:label="Course List"
+            android:parentActivityName=".UI.TermList">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
