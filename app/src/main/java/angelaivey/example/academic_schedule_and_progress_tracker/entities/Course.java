@@ -12,18 +12,18 @@ public class Course {
     private String courseStartDate;
     private String courseEndDate;
     private String courseStatus;
-    private String courseInstructorName;
+    private String courseInstructor;
     private String courseInstructorNumber;
     private String courseInstructorEmail;
     private int termID;
 
-    public Course(int courseID, String courseTitle, String courseStartDate, String courseEndDate, String courseStatus, String courseInstructorName, String courseInstructorNumber, String courseInstructorEmail, int termID) {
+    public Course(int courseID, String courseTitle, String courseStartDate, String courseEndDate, String courseStatus, String courseInstructor, String courseInstructorNumber, String courseInstructorEmail, int termID) {
         this.courseID = courseID;
         this.courseTitle = courseTitle;
         this.courseStartDate = courseStartDate;
         this.courseEndDate = courseEndDate;
         this.courseStatus = courseStatus;
-        this.courseInstructorName = courseInstructorName;
+        this.courseInstructor = courseInstructor;
         this.courseInstructorNumber = courseInstructorNumber;
         this.courseInstructorEmail = courseInstructorEmail;
         this.termID = termID;
@@ -72,12 +72,12 @@ public class Course {
         this.courseStatus = courseStatus;
     }
 
-    public String getCourseInstructorName() {
-        return courseInstructorName;
+    public String getCourseInstructor() {
+        return courseInstructor;
     }
 
-    public void setCourseInstructorName(String courseInstructorName) {
-        this.courseInstructorName = courseInstructorName;
+    public void setCourseInstructor(String courseInstructor) {
+        this.courseInstructor = courseInstructor;
     }
 
     public String getCourseInstructorNumber() {

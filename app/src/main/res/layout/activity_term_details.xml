@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context=".UI.TermDetails">
 
+
+    <!--    This page displays editable term details screen with associated courses by id.
+            The user is taken to this page from the activity_term_list xml page     -->
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -82,7 +86,7 @@
                     android:id="@+id/saveterm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="save" />
+                    android:text="save term" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
 

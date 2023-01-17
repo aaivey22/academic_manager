@@ -13,12 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
-import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class TermDetails extends AppCompatActivity {
@@ -59,18 +55,13 @@ public class TermDetails extends AppCompatActivity {
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //courseAdapter.setCourses(repository.getAllCourses());
-        List<Course> filteredCourses = new ArrayList<>();
-        for (Course c : repository.getAllCourses()) {
-            if (c.getCourseID() == id) filteredCourses.add(c);
-        }
-        courseAdapter.setCourses((filteredCourses));
+        courseAdapter.setCourses(repository.getAllCourses());
         Button button = findViewById(R.id.saveterm);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (id == -1) {
-                    term = new Term(0, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
+                    term = new Term(0,editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                 } else {
