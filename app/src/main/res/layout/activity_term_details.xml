@@ -38,7 +38,6 @@
                     android:id="@+id/termtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:hint="Term title" />
             </LinearLayout>
 
