@@ -79,13 +79,13 @@ public class CourseDetails extends AppCompatActivity {
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //courseAdapter.setCourses(repository.getAllCourses());
+        courseAdapter.setCourses(repository.getAllCourses());
 
-        List<Course> filteredCourses = new ArrayList<>();
+/*        List<Course> filteredCourses = new ArrayList<>();
         for (Course c : repository.getAllCourses()) {
             if (c.getCourseID() == id) filteredCourses.add(c);
         }
-        courseAdapter.setCourses((filteredCourses));
+        courseAdapter.setCourses((filteredCourses));*/
 
         Button button = findViewById(R.id.savecourse);
         button.setOnClickListener(new View.OnClickListener() {

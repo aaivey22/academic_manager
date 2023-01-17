@@ -9,9 +9,11 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="300dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -20,21 +22,92 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Course Title" />
+
+                    <EditText
+                        android:id="@+id/textViewcoursetitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Course Title" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Course Status" />
+
+                    <EditText
+                        android:id="@+id/textViewcoursestatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Course Status" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course Title" />
+                <LinearLayout
 
-                <EditText
-                    android:id="@+id/textViewcoursetitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Course Title" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Date" />
+
+                    <EditText
+                        android:id="@+id/textViewcoursestart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Course Start Date" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End Date" />
+
+                    <EditText
+                        android:id="@+id/textViewcourseend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Course End Date" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -46,61 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Course Start Date" />
-
-                <EditText
-                    android:id="@+id/textViewcoursestart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Course Start Date" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course End Date" />
-
-                <EditText
-                    android:id="@+id/textViewcourseend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Course End Date" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course Status" />
-
-                <EditText
-                    android:id="@+id/textViewcoursestatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Course Status" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course Instructor Name" />
+                    android:text="Instructor Name" />
 
                 <EditText
                     android:id="@+id/textViewcourseinstructor"
@@ -118,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Course Instructor Phone" />
+                    android:text="Instructor Phone" />
 
                 <EditText
                     android:id="@+id/textViewcourseinstructornumber"
@@ -128,7 +147,6 @@
             </LinearLayout>
 
             <LinearLayout
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -136,7 +154,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Course Instructor Email" />
+                    android:text="Instructor Email" />
 
                 <EditText
                     android:id="@+id/textViewcourseinstructoremail"
@@ -154,8 +172,9 @@
                     android:id="@+id/savecourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="save" />
+                    android:text="save course" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
         </LinearLayout>
 
     </ScrollView>
@@ -174,7 +193,5 @@
         android:layout_width="409dp"
         android:layout_height="373dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="301dp" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
