@@ -38,7 +38,7 @@
                     android:id="@+id/termtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Term title" />
+                    android:hint="Term Title" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,8 +88,8 @@
                     android:layout_height="wrap_content"
                     android:text="save term" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </LinearLayout>
 
+        </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

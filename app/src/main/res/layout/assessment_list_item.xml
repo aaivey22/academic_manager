@@ -41,15 +41,6 @@
         app:layout_constraintLeft_toRightOf="@id/textViewassessmentstart"
         tools:layout_editor_absoluteX="73dp"
         tools:layout_editor_absoluteY="112dp" />
-<!--    <TextView
-        android:id="@+id/textViewassessmenttype"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/textViewassessmentend"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="112dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
