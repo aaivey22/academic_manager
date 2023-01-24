@@ -35,7 +35,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     final Assessment current = mAssessments.get(position);
-                    Intent intent = new Intent(context, CourseDetails.class);
+                    Intent intent = new Intent(context, AssessmentDetails.class);
                     intent.putExtra("id", current.getAssessmentID());
                     intent.putExtra("title", current.getAssessmentTitle());
                     intent.putExtra("type", current.getAssessmentType());
