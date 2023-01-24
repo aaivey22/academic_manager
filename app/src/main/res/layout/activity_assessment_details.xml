@@ -31,7 +31,7 @@
                     android:text="Assessment" />
 
                 <EditText
-                    android:id="@+id/assessmenttitle"
+                    android:id="@+id/textViewassessmenttitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Assessment Title" />
@@ -49,7 +49,7 @@
                     android:text="Assessment Type" />
 
                 <EditText
-                    android:id="@+id/assessmenttype"
+                    android:id="@+id/textViewassessmenttype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Assessment Type" />
@@ -66,7 +66,7 @@
                     android:text="Assessment Start" />
 
                 <EditText
-                    android:id="@+id/assessmentstart"
+                    android:id="@+id/textViewassessmentstart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Start Date" />
@@ -83,7 +83,7 @@
                     android:text="Assessment End" />
 
                 <EditText
-                    android:id="@+id/assessmentend"
+                    android:id="@+id/textViewassessmentend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="End Date" />
@@ -103,4 +103,11 @@
 
         </LinearLayout>
     </ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/assessmentrecyclerview"
+        android:layout_width="409dp"
+        android:layout_height="373dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
