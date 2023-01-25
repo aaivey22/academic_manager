@@ -75,12 +75,12 @@ public class CourseDetails extends AppCompatActivity {
         editEmail.setText(email);
 
         repository = new Repository(getApplication());
-        RecyclerView recyclerView = findViewById(R.id.courserecyclerview);
+        RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
         repository = new Repository(getApplication());
-        final CourseAdapter courseAdapter = new CourseAdapter(this);
-        recyclerView.setAdapter(courseAdapter);
+        final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+        recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        courseAdapter.setCourses(repository.getAllCourses());
+        assessmentAdapter.setAssessments(repository.getAllAssessments());
 
 /*        List<Course> filteredCourses = new ArrayList<>();
         for (Course c : repository.getAllCourses()) {

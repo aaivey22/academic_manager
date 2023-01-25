@@ -78,7 +78,6 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
             }
         });
-
-
     }
+
 }

@@ -181,7 +181,7 @@
         app:srcCompat="@drawable/ic_baseline_add_24" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/courserecyclerview"
+        android:id="@+id/assessmentrecyclerview"
         android:layout_width="409dp"
         android:layout_height="373dp"
         app:layout_constraintRight_toRightOf="parent"
