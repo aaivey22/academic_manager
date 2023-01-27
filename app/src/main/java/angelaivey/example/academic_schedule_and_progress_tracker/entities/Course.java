@@ -3,6 +3,9 @@ package angelaivey.example.academic_schedule_and_progress_tracker.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
@@ -16,6 +19,9 @@ public class Course {
     private String courseInstructorNumber;
     private String courseInstructorEmail;
     private int termID;
+/*    private Assessment assessment;
+    private List<Assessment> courseAssessments = new ArrayList<>();*/
+
 
     public Course(int courseID, String courseTitle, String courseStartDate, String courseEndDate, String courseStatus, String courseInstructor, String courseInstructorNumber, String courseInstructorEmail, int termID) {
         this.courseID = courseID;

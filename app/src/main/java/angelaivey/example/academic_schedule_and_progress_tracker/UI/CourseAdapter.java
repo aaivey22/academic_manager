@@ -2,6 +2,7 @@ package angelaivey.example.academic_schedule_and_progress_tracker.UI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course
 
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+    int termID;
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemTitle;
         private final TextView courseItemStartDate;
@@ -51,7 +53,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("instructor", current.getCourseInstructor());
                     intent.putExtra("number", current.getCourseInstructorNumber());
                     intent.putExtra("email", current.getCourseInstructorEmail());
-
+                    intent.putExtra("termID", termID);
                     context.startActivity(intent);
                 }
             });
@@ -116,5 +118,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public int getItemCount() {
         return mCourses.size();
     }
-
+    public void setTermID(int TermID) {
+        termID = TermID;
+    }
 }

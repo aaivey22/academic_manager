@@ -15,6 +15,7 @@ import java.util.List;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
+import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class TermList extends AppCompatActivity {

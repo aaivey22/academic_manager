@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
+import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class TermDetails extends AppCompatActivity {
@@ -55,7 +59,15 @@ public class TermDetails extends AppCompatActivity {
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        courseAdapter.setCourses(repository.getAllCourses());
+
+        List<Course> courseList = new ArrayList<>();
+        for (Course course : repository.getAllCourses()) {
+            if (course.getTermID() == id) {
+                courseList.add(course);
+            }
+        }
+        courseAdapter.setCourses(courseList);
+
         Button button = findViewById(R.id.saveterm);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +76,16 @@ public class TermDetails extends AppCompatActivity {
                     term = new Term(0,editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(TermDetails.this, TermList.class);
+                    startActivity(intent);
+
                 } else {
                     term = new Term(id, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
                     //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(TermDetails.this, TermList.class);
+                    startActivity(intent);
+
                 }
             }
         });
