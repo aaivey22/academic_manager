@@ -83,12 +83,12 @@ public class CourseDetails extends AppCompatActivity {
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assessmentAdapter.setAssessments(repository.getAllAssessments());
-/*        List<Assessment> filteredAssessments = new ArrayList<>();
+        // assessmentAdapter.setAssessments(repository.getAllAssessments());
+        List<Assessment> filteredAssessments = new ArrayList<>();
         for (Assessment a : repository.getAllAssessments()) {
             if (a.getAssessmentID() == id) filteredAssessments.add(a);
         }
-        assessmentAdapter.setAssessments((filteredAssessments));*/
+        assessmentAdapter.setAssessments((filteredAssessments));
 
         Button button = findViewById(R.id.savecourse);
         button.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +110,13 @@ public class CourseDetails extends AppCompatActivity {
             }
         });
 
+        // Loads the assessment list page and passes over the course id variable from the selected course
         FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseDetails.this, AssessmentList.class);
+                intent.putExtra("courseID", id);
                 startActivity(intent);
             }
         });

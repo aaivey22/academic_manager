@@ -17,6 +17,8 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Assess
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
+    int courseID;
+
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentItemTitle;
         private final TextView assessmentItemType;
@@ -41,6 +43,8 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                     intent.putExtra("type", current.getAssessmentType());
                     intent.putExtra("start", current.getAssessmentStartDate());
                     intent.putExtra("end", current.getAssessmentEndDate());
+                    intent.putExtra("courseID", courseID);
+
                     context.startActivity(intent);
                 }
             });
@@ -96,4 +100,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         return mAssessments.size();
     }
 
+    // Setting the value of the course ID when it is called in the app.
+    public void setCourseID(int CourseID){
+        courseID = CourseID;
+    }
 }
+

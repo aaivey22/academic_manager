@@ -28,6 +28,7 @@ public class AssessmentDetails extends AppCompatActivity {
 
     int id;
     int numAssessments;
+    int courseID;
     Assessment assessment;
     Assessment currentAssessment;
     Repository repository;
@@ -47,6 +48,7 @@ public class AssessmentDetails extends AppCompatActivity {
         type = getIntent().getStringExtra("type");
         start = getIntent().getStringExtra("start");
         end = getIntent().getStringExtra("end");
+        courseID = getIntent().getIntExtra("courseID",-1);
 
         editTitle.setText(title);
         editType.setText(type);
@@ -66,12 +68,12 @@ public class AssessmentDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (id == -1) {
-                    assessment = new Assessment(0, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), 0);
+                    assessment = new Assessment(0, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.insert(assessment);
                     Log.d("AssessmentLogging", "New Assessment Added");
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                 } else {
-                    assessment = new Assessment(id, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), 0);
+                    assessment = new Assessment(id, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.update(assessment);
                     Log.d("AssessmentLogging", "Assessment Updated");
                     //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();

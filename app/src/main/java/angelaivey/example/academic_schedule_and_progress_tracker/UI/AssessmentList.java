@@ -18,11 +18,16 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Assess
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 
 public class AssessmentList extends AppCompatActivity {
+    int courseID;
     private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Getting course ID data from course details page
+        courseID = getIntent().getIntExtra("courseID", -1);
+
         setContentView(R.layout.activity_assessment_list);
         RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
@@ -37,6 +42,7 @@ public class AssessmentList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
+                intent.putExtra("courseID", courseID);
                 startActivity(intent);
             }
         });
@@ -50,6 +56,7 @@ public class AssessmentList extends AppCompatActivity {
         recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         assessmentAdapter.setAssessments(allAssessments);
+        assessmentAdapter.setCourseID(courseID); // sending this data over to the assessment adapter
     }
 
 }
