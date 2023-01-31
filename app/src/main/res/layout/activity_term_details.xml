@@ -87,8 +87,8 @@
                     android:layout_height="wrap_content"
                     android:text="save term" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-
         </LinearLayout>
+
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -108,5 +108,4 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="301dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

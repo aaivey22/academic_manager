@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,11 +71,17 @@ public class AssessmentDetails extends AppCompatActivity {
                 if (id == -1) {
                     assessment = new Assessment(0, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.insert(assessment);
+                    Intent intent = new Intent(AssessmentDetails.this, CourseDetails.class);
+                    startActivity(intent);
+
                     Log.d("AssessmentLogging", "New Assessment Added");
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                 } else {
                     assessment = new Assessment(id, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.update(assessment);
+                    Intent intent = new Intent(AssessmentDetails.this, CourseDetails.class);
+                    startActivity(intent);
+
                     Log.d("AssessmentLogging", "Assessment Updated");
                     //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
                 }

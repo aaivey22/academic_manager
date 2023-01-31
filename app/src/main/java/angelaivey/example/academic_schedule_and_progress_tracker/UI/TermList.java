@@ -29,11 +29,12 @@ public class TermList extends AppCompatActivity {
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         repository = new Repository(getApplication());
         List<Term> allTerms = repository.getAllTerms();
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         termAdapter.setTerms(allTerms);
 
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -73,7 +73,7 @@ public class TermDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (id == -1) {
-                    term = new Term(0,editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
+                    term = new Term(0, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(TermDetails.this, TermList.class);
@@ -85,7 +85,6 @@ public class TermDetails extends AppCompatActivity {
                     //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(TermDetails.this, TermList.class);
                     startActivity(intent);
-
                 }
             }
         });
@@ -100,4 +99,22 @@ public class TermDetails extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //List<Course> allCourses = repository.getAllCourses();
+        RecyclerView recyclerView = findViewById(R.id.courserecyclerview);
+        final CourseAdapter courseAdapter = new CourseAdapter(this);
+        List<Course> courseList = new ArrayList<>();
+        for (Course course : repository.getAllCourses()) {
+            if (course.getTermID() == id) {
+                courseList.add(course);
+            }
+        }
+        recyclerView.setAdapter(courseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        courseAdapter.setCourses(courseList);
+    }
+
 }

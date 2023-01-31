@@ -54,7 +54,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
     @NonNull
     @Override
-    public TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.term_list_item, parent, false);
         return new TermViewHolder((itemView));
     }

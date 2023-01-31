@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintRight_toLRightOf="parent">
 
         <TextView
             android:id="@+id/textViewcoursetitle"
@@ -78,8 +78,8 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="TextView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewcourseinstructornumber"
+            app:layout_constraintLeft_toRighttOf="@+id/textViewcourseinstructornumber"
             tools:layout_editor_absoluteX="73dp"
             tools:layout_editor_absoluteY="112dp" />
 
