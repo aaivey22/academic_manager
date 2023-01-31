@@ -83,12 +83,17 @@ public class CourseDetails extends AppCompatActivity {
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // assessmentAdapter.setAssessments(repository.getAllAssessments());
+        //assessmentAdapter.setAssessments(repository.getAllAssessments());
         List<Assessment> filteredAssessments = new ArrayList<>();
         for (Assessment a : repository.getAllAssessments()) {
-            if (a.getAssessmentID() == id) filteredAssessments.add(a);
+            if (a.getCourseID() == id) {
+                filteredAssessments.add(a);
+                Log.d("AssessmentLogging", "CourseDetails ID: " + id + " " + "Assessment ID: " + a.getAssessmentID());
+
+            }
+            Log.d("AssessmentLogging", "CourseDetails ID: " + id + " " + "Assessment ID: " + a.getAssessmentID());
         }
-        assessmentAdapter.setAssessments((filteredAssessments));
+        assessmentAdapter.setAssessments(filteredAssessments);
 
         Button button = findViewById(R.id.savecourse);
         button.setOnClickListener(new View.OnClickListener() {
