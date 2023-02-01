@@ -100,6 +100,7 @@ public class TermDetails extends AppCompatActivity {
         });
     }
 
+    // the onResume function ensures the most updated data is displayed when using the back arrow
     @Override
     protected void onResume() {
         super.onResume();

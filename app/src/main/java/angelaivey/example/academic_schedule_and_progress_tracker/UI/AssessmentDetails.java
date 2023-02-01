@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Assessment;
@@ -49,7 +52,7 @@ public class AssessmentDetails extends AppCompatActivity {
         type = getIntent().getStringExtra("type");
         start = getIntent().getStringExtra("start");
         end = getIntent().getStringExtra("end");
-        courseID = getIntent().getIntExtra("courseID",-1);
+        courseID = getIntent().getIntExtra("courseID", -1);
 
         editTitle.setText(title);
         editType.setText(type);
@@ -59,10 +62,10 @@ public class AssessmentDetails extends AppCompatActivity {
         repository = new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
         repository = new Repository(getApplication());
-        final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
-        recyclerView.setAdapter(assessmentAdapter);
+        //final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+        //recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assessmentAdapter.setAssessments(repository.getAllAssessments());
+        //assessmentAdapter.setAssessments(repository.getAllAssessments());
 
         Button button = findViewById(R.id.saveassessment);
         button.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +74,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 if (id == -1) {
                     assessment = new Assessment(0, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.insert(assessment);
-                    Intent intent = new Intent(AssessmentDetails.this, CourseDetails.class);
+                    Intent intent = new Intent(AssessmentDetails.this, TermList.class);
                     startActivity(intent);
 
                     Log.d("AssessmentLogging", "New Assessment Added");
@@ -79,7 +82,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 } else {
                     assessment = new Assessment(id, editTitle.getText().toString(), editType.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), courseID);
                     repository.update(assessment);
-                    Intent intent = new Intent(AssessmentDetails.this, CourseDetails.class);
+                    Intent intent = new Intent(AssessmentDetails.this, TermList.class);
                     startActivity(intent);
 
                     Log.d("AssessmentLogging", "Assessment Updated");
@@ -88,5 +91,6 @@ public class AssessmentDetails extends AppCompatActivity {
             }
         });
     }
+
 
 }

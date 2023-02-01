@@ -127,4 +127,20 @@ public class CourseDetails extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
+        final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+        List<Assessment> assessmentList = new ArrayList<>();
+        for (Assessment assessment : repository.getAllAssessments()) {
+            if (assessment.getCourseID() == id) {
+                assessmentList.add(assessment);
+            }
+        }
+        recyclerView.setAdapter(assessmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        assessmentAdapter.setAssessments(assessmentList);
+    }
+
 }

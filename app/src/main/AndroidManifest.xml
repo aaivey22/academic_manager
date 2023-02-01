@@ -16,7 +16,7 @@
             android:name=".UI.AssessmentDetails"
             android:exported="false"
             android:label="Assessment Details"
-            android:parentActivityName=".UI.AssessmentList">
+            android:parentActivityName=".UI.TermList">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -25,7 +25,7 @@
             android:name=".UI.AssessmentList"
             android:exported="false"
             android:label="Assessment List"
-            android:parentActivityName=".UI.CourseDetails">
+            android:parentActivityName=".UI.TermList">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -34,7 +34,7 @@
             android:name=".UI.CourseDetails"
             android:exported="false"
             android:label="Course Details"
-            android:parentActivityName=".UI.CourseList">
+            android:parentActivityName=".UI.TermList">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -44,7 +44,7 @@
             android:name=".UI.CourseList"
             android:exported="false"
             android:label="Course List"
-            android:parentActivityName=".UI.TermDetails">
+            android:parentActivityName=".UI.TermList">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
