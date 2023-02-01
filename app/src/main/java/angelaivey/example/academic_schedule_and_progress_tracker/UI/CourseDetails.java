@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
@@ -30,6 +32,9 @@ public class CourseDetails extends AppCompatActivity {
     EditText editInstructor;
     EditText editNumber;
     EditText editEmail;
+    EditText editNote;
+    DatePickerDialog.OnDateSetListener startDate;
+    final Calendar calendarStart = Calendar.getInstance();
 
     String title;
     String start;

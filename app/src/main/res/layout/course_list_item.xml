@@ -82,6 +82,16 @@
             app:layout_constraintLeft_toRighttOf="@+id/textViewcourseinstructornumber"
             tools:layout_editor_absoluteX="73dp"
             tools:layout_editor_absoluteY="112dp" />
+        <TextView
+            android:id="@+id/textViewcoursenote"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="TextView"
+            app:layout_constraintTop_toTopOf="@id/textViewcourseinstructoremail"
+            app:layout_constraintLeft_toRighttOf="@+id/textViewcourseinstructoremail"
+            tools:layout_editor_absoluteX="73dp"
+            tools:layout_editor_absoluteY="112dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
