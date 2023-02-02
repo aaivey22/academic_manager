@@ -57,6 +57,7 @@ public class TermDetails extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.courserecyclerview);
         repository = new Repository(getApplication());
         final CourseAdapter courseAdapter = new CourseAdapter(this);
+        courseAdapter.setTermID(id);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -67,7 +68,6 @@ public class TermDetails extends AppCompatActivity {
             }
         }
         courseAdapter.setCourses(courseList);
-
         Button button = findViewById(R.id.saveterm);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +107,7 @@ public class TermDetails extends AppCompatActivity {
         //List<Course> allCourses = repository.getAllCourses();
         RecyclerView recyclerView = findViewById(R.id.courserecyclerview);
         final CourseAdapter courseAdapter = new CourseAdapter(this);
+        courseAdapter.setTermID(id);
         List<Course> courseList = new ArrayList<>();
         for (Course course : repository.getAllCourses()) {
             if (course.getTermID() == id) {

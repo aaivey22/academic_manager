@@ -7,6 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName="terms")
+
 public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termID;

@@ -8,20 +8,24 @@ import java.util.concurrent.Executors;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.dao.AssessmentDAO;
 import angelaivey.example.academic_schedule_and_progress_tracker.dao.CourseDAO;
+import angelaivey.example.academic_schedule_and_progress_tracker.dao.NoteDAO;
 import angelaivey.example.academic_schedule_and_progress_tracker.dao.TermDAO;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Assessment;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
+import angelaivey.example.academic_schedule_and_progress_tracker.entities.Note;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class Repository {
     private TermDAO mTermDAO;
     private CourseDAO mCourseDAO;
     private AssessmentDAO mAssessmentDAO;
+    private NoteDAO mNoteDAO;
     private List<Term> mAllTerms;
     private List<Course> mAllCourses;
     private List<Assessment> mAllAssessments;
+    private List<Note> mAllNotes;
 
-    private static int NUMBER_OF_THREADS = 6;
+    private static int NUMBER_OF_THREADS = 8;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public Repository(Application application) {
@@ -29,6 +33,7 @@ public class Repository {
         mTermDAO = db.termDAO();
         mCourseDAO = db.courseDAO();
         mAssessmentDAO = db.assessmentDAO();
+        mNoteDAO = db.noteDAO();
     }
 
     public List<Term> getAllTerms() {
@@ -158,6 +163,51 @@ public class Repository {
     public void delete(Assessment assessment) {
         databaseExecutor.execute(() -> {
             mAssessmentDAO.delete(assessment);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Note> getAllNotes() {
+        databaseExecutor.execute(() -> {
+            mAllNotes = mNoteDAO.getAllNotes();
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllNotes;
+    }
+
+    public void insert(Note note) {
+        databaseExecutor.execute(() -> {
+            mNoteDAO.insert(note);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Note note) {
+        databaseExecutor.execute(() -> {
+            mNoteDAO.update(note);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(Note note) {
+        databaseExecutor.execute(() -> {
+            mNoteDAO.delete(note);
         });
         try {
             Thread.sleep(1000);
