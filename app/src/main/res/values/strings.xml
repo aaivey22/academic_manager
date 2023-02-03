@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">academic_schedule_and_progress_tracker</string>
+    <string name="share_notes">Share Notes</string>
+    <string name="notification_end">Notification End</string>
+    <string name="notification_start">Notification Start</string>
+    <string name="home">Home</string>
 </resources>

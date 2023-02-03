@@ -8,12 +8,16 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+
 import java.text.ParseException;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -99,7 +103,7 @@ public class CourseDetails extends AppCompatActivity {
 
 
         repository = new Repository(getApplication());
-        if(!repository.getAllNotes().isEmpty()) {
+        if (!repository.getAllNotes().isEmpty()) {
             for (Note note : repository.getAllNotes()) {
                 if (note.getCourseID() == id) {
                     noteBody = note.getNoteBody();
@@ -167,6 +171,31 @@ public class CourseDetails extends AppCompatActivity {
         });
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_course_details, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                this.finish();
+                return true;
+            case R.id.shareNotes:
+                Log.d("Options Menu", "Share Clicked");
+                return true;
+            case R.id.notificationStart:
+                Log.d("Options Menu", "Start Notification Clicked");
+                return true;
+            case R.id.notificationEnd:
+                Log.d("Options Menu", "End Notification Clicked");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
