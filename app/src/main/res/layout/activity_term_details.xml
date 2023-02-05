@@ -55,7 +55,8 @@
                     android:id="@+id/termstart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Term Start Date" />
+                    android:hint="Term Start Date"
+                    android:onClick="openStartDatePicker"/>
             </LinearLayout>
 
             <LinearLayout
@@ -73,7 +74,8 @@
                     android:id="@+id/termend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Term End Date" />
+                    android:hint="Term End Date"
+                    android:onClick="openEndDatePicker"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat

@@ -58,10 +58,7 @@ public class CourseDetails extends AppCompatActivity {
     int id;
     int termID;
     int noteID;
-    //int numCourses;
     Course course;
-    //Assessment assessment;
-    //Course currentCourse;
     Note courseNote;
     Repository repository;
 
@@ -69,6 +66,7 @@ public class CourseDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
+
         startDatePicker();
         endDatePicker();
 
