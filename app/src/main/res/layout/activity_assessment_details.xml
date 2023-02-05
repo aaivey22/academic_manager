@@ -70,7 +70,8 @@
                     android:id="@+id/textViewassessmentstart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Start Date" />
+                    android:hint="Start Date"
+                    android:onClick="openStartDatePicker"/>
             </LinearLayout>
 
             <LinearLayout
@@ -87,7 +88,8 @@
                     android:id="@+id/textViewassessmentend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="End Date" />
+                    android:hint="End Date"
+                    android:onClick="openEndDatePicker"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat

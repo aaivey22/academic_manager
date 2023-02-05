@@ -109,12 +109,11 @@ public class CourseDetails extends AppCompatActivity {
                 }
             }
         }
+
         RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
-        //repository = new Repository(getApplication());
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //assessmentAdapter.setAssessments(repository.getAllAssessments());
         List<Assessment> filteredAssessments = new ArrayList<>();
         for (Assessment a : repository.getAllAssessments()) {
             if (a.getCourseID() == id) {
@@ -203,7 +202,7 @@ public class CourseDetails extends AppCompatActivity {
 
     }
 
-    public void openEndDatePicker(View view){
+    public void openEndDatePicker(View view) {
         endDatePicker.show();
     }
 
@@ -242,7 +241,7 @@ public class CourseDetails extends AppCompatActivity {
 
     }
 
-    public void openStartDatePicker(View view){
+    public void openStartDatePicker(View view) {
         startDatePicker.show();
     }
 
