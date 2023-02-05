@@ -42,10 +42,9 @@ public class CourseDetails extends AppCompatActivity {
     EditText editInstructor;
     EditText editNumber;
     EditText editEmail;
-    EditText editDate;
     EditText editNote;
-    DatePickerDialog.OnDateSetListener startDate;
-    final Calendar calendarStart = Calendar.getInstance();
+    private DatePickerDialog startDatePicker;
+    private DatePickerDialog endDatePicker;
 
     String title;
     String start;
@@ -59,10 +58,10 @@ public class CourseDetails extends AppCompatActivity {
     int id;
     int termID;
     int noteID;
-    int numCourses;
+    //int numCourses;
     Course course;
-    Assessment assessment;
-    Course currentCourse;
+    //Assessment assessment;
+    //Course currentCourse;
     Note courseNote;
     Repository repository;
 
@@ -70,6 +69,9 @@ public class CourseDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
+        startDatePicker();
+        endDatePicker();
+
         editTitle = findViewById(R.id.textViewcoursetitle);
         editStart = findViewById(R.id.textViewcoursestart);
         editEnd = findViewById(R.id.textViewcourseend);
@@ -80,9 +82,6 @@ public class CourseDetails extends AppCompatActivity {
         editNote = findViewById(R.id.textViewcoursenote);
 
         String dateFormat = "MM/dd/yy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.US);
-        editStart.setText(simpleDateFormat.format(new Date()));
-        editEnd.setText(simpleDateFormat.format(new Date()));
         id = getIntent().getIntExtra("id", -1);
         termID = getIntent().getIntExtra("termID", -1);
         title = getIntent().getStringExtra("title");
@@ -94,8 +93,8 @@ public class CourseDetails extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
 
         editTitle.setText(title);
-        //editStart.setText(start);
-        //editEnd.setText(end);
+        editStart.setText(start);
+        editEnd.setText(end);
         editStatus.setText(status);
         editInstructor.setText(instructor);
         editNumber.setText(number);
@@ -143,6 +142,7 @@ public class CourseDetails extends AppCompatActivity {
                         repository.update(courseNote);
                     }
                 }
+
                 if (id == -1) {
                     course = new Course(0, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), editStatus.getText().toString(), editInstructor.getText().toString(), editNumber.getText().toString(), editEmail.getText().toString(), termID);
                     repository.insert(course);
@@ -170,6 +170,82 @@ public class CourseDetails extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void endDatePicker() {
+        DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String formatMonth = null;
+                String formatDay = null;
+                if (month < 10) {
+                    formatMonth = String.format("0" + String.valueOf(month));
+                } else {
+                    formatMonth = String.valueOf((month));
+                }
+
+                if (day < 10) {
+                    formatDay = String.format("0" + String.valueOf(day));
+                } else {
+                    formatDay = String.valueOf((day));
+                }
+                end = formatMonth + "/" + formatDay + "/" + (year - 2000);
+                editEnd.setText(end);
+
+            }
+        };
+        Calendar endCalendar = Calendar.getInstance();
+
+        int year = endCalendar.get(Calendar.YEAR);
+        int month = endCalendar.get(Calendar.MONTH);
+        int day = endCalendar.get(Calendar.DAY_OF_MONTH);
+
+        endDatePicker = new DatePickerDialog(CourseDetails.this, endDateSetListener, year, month, day);
+
+    }
+
+    public void openEndDatePicker(View view){
+        endDatePicker.show();
+    }
+
+
+    private void startDatePicker() {
+        DatePickerDialog.OnDateSetListener startDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String formatMonth = null;
+                String formatDay = null;
+                if (month < 10) {
+                    formatMonth = String.format("0" + String.valueOf(month));
+                } else {
+                    formatMonth = String.valueOf((month));
+                }
+
+                if (day < 10) {
+                    formatDay = String.format("0" + String.valueOf(day));
+                } else {
+                    formatDay = String.valueOf((day));
+                }
+                start = formatMonth + "/" + formatDay + "/" + (year - 2000);
+                editStart.setText(start);
+
+            }
+        };
+
+        Calendar startCalendar = Calendar.getInstance();
+
+        int year = startCalendar.get(Calendar.YEAR);
+        int month = startCalendar.get(Calendar.MONTH);
+        int day = startCalendar.get(Calendar.DAY_OF_MONTH);
+
+        startDatePicker = new DatePickerDialog(CourseDetails.this, startDateSetListener, year, month, day);
+
+    }
+
+    public void openStartDatePicker(View view){
+        startDatePicker.show();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
