@@ -263,27 +263,48 @@ public class CourseDetails extends AppCompatActivity {
                 return true;
             case R.id.notificationStart:
                 String startDateFromScreen = editStart.getText().toString();
-                String myFormat = "MM/dd/yy";
+                String formatStartDate = "MM/dd/yy";
                 Log.d("Options Menu", "Start Notification Clicked " + startDateFromScreen);
 
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                SimpleDateFormat sdfstart = new SimpleDateFormat(formatStartDate, Locale.US);
                 Date startDate = null;
                 try {
-                    startDate = sdf.parse(startDateFromScreen);
+                    startDate = sdfstart.parse(startDateFromScreen);
 
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Long trigger = startDate.getTime();
-                Intent intent = new Intent(CourseDetails.this, MyReceiver.class);
+                Long triggerStart = startDate.getTime();
+                Intent intentStart = new Intent(CourseDetails.this, MyReceiver.class);
                 Log.d("Options Menu", "Start Notification Clicked " + startDateFromScreen);
-                String CourseName = editTitle.getText().toString();
-                intent.putExtra("courseStartNotify", "Course: " + CourseName + " starts on " + startDateFromScreen);
-                PendingIntent sender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                String CourseNameStart = editTitle.getText().toString();
+                intentStart.putExtra("courseStartNotify", "Course: " + CourseNameStart + " starts on " + startDateFromScreen);
+                PendingIntent senderStart = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intentStart, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManagerStart = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
                 return true;
             case R.id.notificationEnd:
+                String endDateFromScreen = editEnd.getText().toString();
+                String myFormat = "MM/dd/yy";
+                Log.d("Options Menu", "End Notification Clicked " + endDateFromScreen);
+
+                SimpleDateFormat sdfend = new SimpleDateFormat(myFormat, Locale.US);
+                Date endDate = null;
+                try {
+                    endDate = sdfend.parse(endDateFromScreen);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long trigger = endDate.getTime();
+                Intent intentEnd = new Intent(CourseDetails.this, MyReceiver.class);
+                Log.d("Options Menu", "End Notification Clicked " + endDateFromScreen);
+                String CourseName = editTitle.getText().toString();
+                intentEnd.putExtra("courseStartNotify", "Course: " + CourseName + " ends on " + endDateFromScreen);
+                PendingIntent sender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intentEnd, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+
                 Log.d("Options Menu", "End Notification Clicked");
                 return true;
         }
