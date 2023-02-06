@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -259,7 +262,26 @@ public class CourseDetails extends AppCompatActivity {
                 Log.d("Options Menu", "Share Clicked");
                 return true;
             case R.id.notificationStart:
-                Log.d("Options Menu", "Start Notification Clicked");
+                String startDateFromScreen = editStart.getText().toString();
+                String myFormat = "MM/dd/yy";
+                Log.d("Options Menu", "Start Notification Clicked " + startDateFromScreen);
+
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                Date startDate = null;
+                try {
+                    startDate = sdf.parse(startDateFromScreen);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long trigger = startDate.getTime();
+                Intent intent = new Intent(CourseDetails.this, MyReceiver.class);
+                Log.d("Options Menu", "Start Notification Clicked " + startDateFromScreen);
+                String CourseName = editTitle.getText().toString();
+                intent.putExtra("courseStartNotify", "Course: " + CourseName + " starts on " + startDateFromScreen);
+                PendingIntent sender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
                 return true;
             case R.id.notificationEnd:
                 Log.d("Options Menu", "End Notification Clicked");
