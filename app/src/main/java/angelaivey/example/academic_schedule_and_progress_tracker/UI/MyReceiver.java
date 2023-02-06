@@ -8,29 +8,43 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+
+import java.util.Objects;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
 
 public class MyReceiver extends BroadcastReceiver {
     String channel_id_course_start = "courseStartChannel";
-    String channel_id_course_end = "courseStartChannel";
+    String channel_id_course_end = "courseEndChannel";
 
     static int notificationID;
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, intent.getStringExtra("courseStartNotify"), Toast.LENGTH_LONG).show();
-        createNotificationChannel(context, channel_id_course_start);
-        Notification n = new NotificationCompat.Builder(context, channel_id_course_start)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentText(intent.getStringExtra("courseStartNotify"))
-                .setContentTitle("Start Course Notification").build();
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(notificationID++, n);
-
-
+        String notificationType = intent.getStringExtra("NotificationType");
+        if(Objects.equals(notificationType, "CourseStart")) {
+            Toast.makeText(context, intent.getStringExtra("courseStartNotify"), Toast.LENGTH_LONG).show();
+            createNotificationChannel(context, channel_id_course_start);
+            Notification n = new NotificationCompat.Builder(context, channel_id_course_start)
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentText(intent.getStringExtra("courseStartNotify"))
+                    .setContentTitle("Start Course Notification").build();
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(notificationID++, n);
+        }
+        if(Objects.equals(notificationType, "CourseEnd")) {
+            Toast.makeText(context, intent.getStringExtra("courseEndNotify"), Toast.LENGTH_LONG).show();
+            createNotificationChannel(context, channel_id_course_end);
+            Notification n = new NotificationCompat.Builder(context, channel_id_course_end)
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentText(intent.getStringExtra("courseEndNotify"))
+                    .setContentTitle("End Course Notification").build();
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(notificationID++, n);
+        }
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
         //throw new UnsupportedOperationException("Not yet implemented");
