@@ -261,6 +261,13 @@ public class CourseDetails extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.shareNotes:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, editNote.getText().toString());
+                sendIntent.putExtra(Intent.EXTRA_TITLE, "Message Title");
+                sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
                 Log.d("Options Menu", "Share Clicked");
                 return true;
             case R.id.notificationStart:
