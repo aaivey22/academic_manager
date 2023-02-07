@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/notificationStart"
+        android:title="@string/notification_start" />
+    <item
+        android:id="@+id/notificationEnd"
+        android:title="@string/notification_end" />
+
+</menu>

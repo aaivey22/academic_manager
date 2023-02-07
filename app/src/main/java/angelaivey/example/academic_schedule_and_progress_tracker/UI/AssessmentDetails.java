@@ -4,18 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
@@ -172,5 +181,60 @@ public class AssessmentDetails extends AppCompatActivity {
         startDatePicker.show();
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_assessment_details, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                this.finish();
+                return true;
+            case R.id.notificationStart:
+                String startDateFromScreen = editStart.getText().toString();
+                String formatStartDate = "MM/dd/yy";
+                SimpleDateFormat sdfstart = new SimpleDateFormat(formatStartDate, Locale.US);
+                Date startDateAssessment = null;
+                try {
+                    startDateAssessment = sdfstart.parse(startDateFromScreen);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long triggerStart = startDateAssessment.getTime();
+                Intent intentStart = new Intent(AssessmentDetails.this, MyReceiver.class);
+                intentStart.putExtra("NotificationType", "AssessmentStart");
+                String AssessmentNameStart = editTitle.getText().toString();
+                intentStart.putExtra("assessmentStartNotify", "Assessment: " + AssessmentNameStart + " starts on " + startDateFromScreen);
+                PendingIntent senderStart = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.numAlert, intentStart, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManagerStart = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
+                return true;
+            case R.id.notificationEnd:
+                String endDateFromScreen = editEnd.getText().toString();
+                String myFormat = "MM/dd/yy";
+                SimpleDateFormat sdfend = new SimpleDateFormat(myFormat, Locale.US);
+                Date endDate = null;
+                try {
+                    endDate = sdfend.parse(endDateFromScreen);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long trigger = endDate.getTime();
+                Intent intentEnd = new Intent(AssessmentDetails.this, MyReceiver.class);
+                intentEnd.putExtra("NotificationType", "AssessmentEnd");
+                String AssessmentNameEnd = editTitle.getText().toString();
+                intentEnd.putExtra("assessmentEndNotify", "Assessment: " + AssessmentNameEnd + " ends on " + endDateFromScreen);
+                PendingIntent senderEnd = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.numAlert, intentEnd, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, trigger, senderEnd);
+
+                Log.d("Options Menu", "End Notification Clicked");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
