@@ -5,10 +5,6 @@
         android:id="@+id/home"
         android:title="@string/home" />
     <item
-        android:id="@+id/notificationStart"
-        android:title="@string/notification_start" />
-    <item
-        android:id="@+id/notificationEnd"
-        android:title="@string/notification_end" />
-
+        android:id="@+id/deleteTerm"
+        android:title="@string/delete_term" />
 </menu>

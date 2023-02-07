@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,9 +21,13 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import angelaivey.example.academic_schedule_and_progress_tracker.Database.Repository;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
@@ -37,7 +47,9 @@ public class TermDetails extends AppCompatActivity {
     String end;
 
     int id;
+    int numCourses;
     Term term;
+    Term currentTerm;
     Repository repository;
 
     @Override
@@ -143,7 +155,7 @@ public class TermDetails extends AppCompatActivity {
 
     }
 
-    public void openEndDatePicker(View view){
+    public void openEndDatePicker(View view) {
         endDatePicker.show();
     }
 
@@ -167,10 +179,9 @@ public class TermDetails extends AppCompatActivity {
                 }
                 start = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editStart.setText(start);
-
             }
-
         };
+
         Calendar startCalendar = Calendar.getInstance();
 
         int year = startCalendar.get(Calendar.YEAR);
@@ -181,10 +192,39 @@ public class TermDetails extends AppCompatActivity {
 
     }
 
-    public void openStartDatePicker(View view){
+    public void openStartDatePicker(View view) {
         startDatePicker.show();
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_term_details, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                this.finish();
+                return true;
+            case R.id.deleteTerm:
+                for (Term term : repository.getAllTerms()) {
+                    if (term.getTermID() == id) currentTerm = term;
+                }
+                numCourses = 0;
+                for (Course course : repository.getAllCourses()) {
+                    if (course.getTermID() == id) ++numCourses;
+                }
+                if (numCourses == 0) {
+                    repository.delete(currentTerm);
+                    Toast.makeText(TermDetails.this, currentTerm.getTermTitle() + " was deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(TermDetails.this, "A term with assigned courses cannot be deleted.", Toast.LENGTH_LONG).show();
+                }
+                Log.d("Options Menu", "Delete Course Clicked");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     // the onResume function ensures the most updated data is displayed when using the back arrow
     @Override
