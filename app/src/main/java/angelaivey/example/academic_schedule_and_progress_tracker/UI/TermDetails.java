@@ -216,6 +216,8 @@ public class TermDetails extends AppCompatActivity {
                 }
                 if (numCourses == 0) {
                     repository.delete(currentTerm);
+                    Intent intent = new Intent(TermDetails.this, TermList.class);
+                    startActivity(intent);
                     Toast.makeText(TermDetails.this, currentTerm.getTermTitle() + " was deleted", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(TermDetails.this, "A term with assigned courses cannot be deleted.", Toast.LENGTH_LONG).show();
