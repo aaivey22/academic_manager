@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.ParseException;
 
@@ -62,6 +63,7 @@ public class CourseDetails extends AppCompatActivity {
     int termID;
     int noteID;
     Course course;
+    Course currentCourse;
     Note courseNote;
     Repository repository;
 
@@ -303,6 +305,18 @@ public class CourseDetails extends AppCompatActivity {
 
                 Log.d("Options Menu", "End Notification Clicked");
                 return true;
+            case R.id.deleteCourse:
+                for (Course course : repository.getAllCourses()) {
+                    if (course.getCourseID() == id) currentCourse = course;
+                }
+                repository.delete(currentCourse);
+                Toast.makeText(CourseDetails.this, currentCourse.getCourseTitle() + " was deleted", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(CourseDetails.this, TermList.class);
+                startActivity(intent);
+                Log.d("Options Menu", "Delete Course Clicked");
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

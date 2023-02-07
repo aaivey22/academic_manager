@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +31,7 @@ import angelaivey.example.academic_schedule_and_progress_tracker.Database.Reposi
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Assessment;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
+import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class AssessmentDetails extends AppCompatActivity {
     EditText editTitle;
@@ -47,7 +49,10 @@ public class AssessmentDetails extends AppCompatActivity {
 
     int id;
     int courseID;
+
     Assessment assessment;
+    Assessment currentAssessment;
+
     Repository repository;
 
     @Override
@@ -106,28 +111,29 @@ public class AssessmentDetails extends AppCompatActivity {
         });
     }
 
-    private void endDatePicker() {        DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            month = month + 1;
-            String formatMonth = null;
-            String formatDay = null;
-            if (month < 10) {
-                formatMonth = String.format("0" + String.valueOf(month));
-            } else {
-                formatMonth = String.valueOf((month));
-            }
+    private void endDatePicker() {
+        DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String formatMonth = null;
+                String formatDay = null;
+                if (month < 10) {
+                    formatMonth = String.format("0" + String.valueOf(month));
+                } else {
+                    formatMonth = String.valueOf((month));
+                }
 
-            if (day < 10) {
-                formatDay = String.format("0" + String.valueOf(day));
-            } else {
-                formatDay = String.valueOf((day));
-            }
-            end = formatMonth + "/" + formatDay + "/" + (year - 2000);
-            editEnd.setText(end);
+                if (day < 10) {
+                    formatDay = String.format("0" + String.valueOf(day));
+                } else {
+                    formatDay = String.valueOf((day));
+                }
+                end = formatMonth + "/" + formatDay + "/" + (year - 2000);
+                editEnd.setText(end);
 
-        }
-    };
+            }
+        };
         Calendar endCalendar = Calendar.getInstance();
 
         int year = endCalendar.get(Calendar.YEAR);
@@ -233,6 +239,17 @@ public class AssessmentDetails extends AppCompatActivity {
 
                 Log.d("Options Menu", "End Notification Clicked");
                 return true;
+            case R.id.deleteAssessment:
+                for (Assessment assessment : repository.getAllAssessments()) {
+                    if (assessment.getAssessmentID() == id) currentAssessment = assessment;
+                }
+                repository.delete(currentAssessment);
+                Toast.makeText(AssessmentDetails.this, currentAssessment.getAssessmentTitle() + " was deleted", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(AssessmentDetails.this, TermList.class);
+                startActivity(intent);
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

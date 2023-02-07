@@ -10,5 +10,7 @@
     <item
         android:id="@+id/notificationEnd"
         android:title="@string/notification_end" />
-
+    <item
+        android:id="@+id/deleteAssessment"
+        android:title="@string/delete_assessment" />
 </menu>
