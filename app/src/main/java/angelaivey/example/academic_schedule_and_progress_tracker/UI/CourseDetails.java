@@ -62,6 +62,7 @@ public class CourseDetails extends AppCompatActivity {
     int id;
     int termID;
     int noteID;
+    int aCount = 0;
     Course course;
     Course currentCourse;
     Note courseNote;
@@ -123,6 +124,7 @@ public class CourseDetails extends AppCompatActivity {
         for (Assessment a : repository.getAllAssessments()) {
             if (a.getCourseID() == id) {
                 filteredAssessments.add(a);
+                aCount++;
                 Log.d("AssessmentLogging", "CourseDetails ID: " + id + " " + "Assessment ID: " + a.getAssessmentID());
             }
             Log.d("AssessmentLogging", "CourseDetails ID: " + id + " " + "Assessment ID: " + a.getAssessmentID());
@@ -166,12 +168,15 @@ public class CourseDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseDetails.this, AssessmentList.class);
-                intent.putExtra("courseID", id);
-                startActivity(intent);
+                if(aCount < 5) {
+                    Intent intent = new Intent(CourseDetails.this, AssessmentList.class);
+                    intent.putExtra("courseID", id);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(CourseDetails.this, "Only 5 Assessments Permitted", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
     }
 
     private void endDatePicker() {
