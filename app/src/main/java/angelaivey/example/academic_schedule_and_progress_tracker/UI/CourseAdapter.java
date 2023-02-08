@@ -16,9 +16,9 @@ import java.util.List;
 import angelaivey.example.academic_schedule_and_progress_tracker.R;
 import angelaivey.example.academic_schedule_and_progress_tracker.entities.Course;
 
-
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     int termID;
+
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemTitle;
         private final TextView courseItemStartDate;
@@ -27,7 +27,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         private final TextView courseItemInstructor;
         private final TextView courseItemInstructorNumber;
         private final TextView courseItemInstructorEmail;
-
 
         private CourseViewHolder(View itemView) {
             super(itemView);
@@ -104,9 +103,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             holder.courseItemInstructor.setText("No Course Instructor");
             holder.courseItemInstructorNumber.setText("No Course Instructor Number");
             holder.courseItemInstructorEmail.setText("No Course Instructor Email");
-
         }
-
     }
 
     public void setCourses(List<Course> courses) {

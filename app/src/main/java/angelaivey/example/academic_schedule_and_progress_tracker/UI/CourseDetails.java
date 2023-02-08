@@ -47,6 +47,7 @@ public class CourseDetails extends AppCompatActivity {
     EditText editNumber;
     EditText editEmail;
     EditText editNote;
+
     private DatePickerDialog startDatePicker;
     private DatePickerDialog endDatePicker;
 
@@ -63,6 +64,7 @@ public class CourseDetails extends AppCompatActivity {
     int termID;
     int noteID;
     int aCount = 0;
+
     Course course;
     Course currentCourse;
     Note courseNote;
@@ -104,7 +106,6 @@ public class CourseDetails extends AppCompatActivity {
         editNumber.setText(number);
         editEmail.setText(email);
 
-
         repository = new Repository(getApplication());
         if (!repository.getAllNotes().isEmpty()) {
             for (Note note : repository.getAllNotes()) {
@@ -121,6 +122,7 @@ public class CourseDetails extends AppCompatActivity {
         recyclerView.setAdapter(assessmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Assessment> filteredAssessments = new ArrayList<>();
+
         for (Assessment a : repository.getAllAssessments()) {
             if (a.getCourseID() == id) {
                 filteredAssessments.add(a);
@@ -129,6 +131,7 @@ public class CourseDetails extends AppCompatActivity {
             }
             Log.d("AssessmentLogging", "CourseDetails ID: " + id + " " + "Assessment ID: " + a.getAssessmentID());
         }
+
         assessmentAdapter.setAssessments(filteredAssessments);
         assessmentAdapter.setCourseID(id);
         Button button = findViewById(R.id.savecourse);
@@ -163,12 +166,13 @@ public class CourseDetails extends AppCompatActivity {
             }
         });
 
-        // Loads the assessment list page and passes over the course id variable from the selected course
+        // Loads the assessment list page and passes over the course id variable from the selected course if the ID exists
+        // Else, it will display message explaining the 5 assessment cap
         FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(aCount < 5) {
+                if (aCount < 5) {
                     Intent intent = new Intent(CourseDetails.this, AssessmentList.class);
                     intent.putExtra("courseID", id);
                     startActivity(intent);
@@ -191,7 +195,6 @@ public class CourseDetails extends AppCompatActivity {
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -199,23 +202,19 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 end = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editEnd.setText(end);
-
             }
         };
-        Calendar endCalendar = Calendar.getInstance();
 
+        Calendar endCalendar = Calendar.getInstance();
         int year = endCalendar.get(Calendar.YEAR);
         int month = endCalendar.get(Calendar.MONTH);
         int day = endCalendar.get(Calendar.DAY_OF_MONTH);
-
         endDatePicker = new DatePickerDialog(CourseDetails.this, endDateSetListener, year, month, day);
-
     }
 
     public void openEndDatePicker(View view) {
         endDatePicker.show();
     }
-
 
     private void startDatePicker() {
         DatePickerDialog.OnDateSetListener startDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -224,12 +223,12 @@ public class CourseDetails extends AppCompatActivity {
                 month = month + 1;
                 String formatMonth = null;
                 String formatDay = null;
+
                 if (month < 10) {
                     formatMonth = String.format("0" + String.valueOf(month));
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -237,7 +236,6 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 start = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editStart.setText(start);
-
             }
         };
 
@@ -248,7 +246,6 @@ public class CourseDetails extends AppCompatActivity {
         int day = startCalendar.get(Calendar.DAY_OF_MONTH);
 
         startDatePicker = new DatePickerDialog(CourseDetails.this, startDateSetListener, year, month, day);
-
     }
 
     public void openStartDatePicker(View view) {
@@ -328,11 +325,9 @@ public class CourseDetails extends AppCompatActivity {
                 startActivity(intent);
                 Log.d("Options Menu", "Delete Course Clicked");
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     protected void onResume() {
@@ -350,5 +345,4 @@ public class CourseDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         assessmentAdapter.setAssessments(assessmentList);
     }
-
 }

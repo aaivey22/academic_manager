@@ -47,6 +47,7 @@ public class AssessmentList extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -58,5 +59,4 @@ public class AssessmentList extends AppCompatActivity {
         assessmentAdapter.setAssessments(allAssessments);
         assessmentAdapter.setCourseID(courseID); // sending this data over to the assessment adapter
     }
-
 }

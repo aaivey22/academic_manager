@@ -54,5 +54,4 @@ public class TermList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(allTerms);
     }
-
 }

@@ -16,13 +16,11 @@ import angelaivey.example.academic_schedule_and_progress_tracker.entities.Term;
 
 public class MainActivity extends AppCompatActivity {
     public static int numAlert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*Term term = new Term(0, "Term 1", "02/15/2018", "02/01/2023");
-        Repository repository = new Repository(getApplication());
-        repository.insert(term);*/
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addSampleData:
-            Term term = new Term(0, "Term 1", "02/15/2018", "02/01/2023");
-            Repository repository = new Repository(getApplication());
-            repository.insert(term);
-            Course course = new Course(0, "Maths", "03/0/3029", "03/04/2039", "pass", "Reishi Grizwald", "306-435-7957", "reishi@email.com", 1);
-            repository.insert(course);
-            return true;
+                Term term = new Term(0, "Term 1", "02/01/2023", "07/01/2023");
+                Repository repository = new Repository(getApplication());
+                repository.insert(term);
+                Course course = new Course(0, "Maths", "02/08/2023", "02/08/2023", "pass", "Reishi Grizwald", "306-435-7957", "reishi@email.com", 1);
+                repository.insert(course);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -44,7 +44,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                     intent.putExtra("start", current.getAssessmentStartDate());
                     intent.putExtra("end", current.getAssessmentEndDate());
                     intent.putExtra("courseID", courseID);
-
                     context.startActivity(intent);
                 }
             });
@@ -87,7 +86,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             holder.assessmentItemStartDate.setText("No Assessment Start Date");
             holder.assessmentItemEndDate.setText("No Assessment End Date");
         }
-
     }
 
     public void setAssessments(List<Assessment> assessments) {
@@ -101,7 +99,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     }
 
     // Setting the value of the course ID when it is called in the app.
-    public void setCourseID(int CourseID){
+    public void setCourseID(int CourseID) {
         courseID = CourseID;
     }
 }

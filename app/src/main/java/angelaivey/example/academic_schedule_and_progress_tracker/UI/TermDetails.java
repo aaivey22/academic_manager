@@ -48,6 +48,7 @@ public class TermDetails extends AppCompatActivity {
 
     int id;
     int numCourses;
+
     Term term;
     Term currentTerm;
     Repository repository;
@@ -100,7 +101,6 @@ public class TermDetails extends AppCompatActivity {
                     //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(TermDetails.this, TermList.class);
                     startActivity(intent);
-
                 } else {
                     term = new Term(id, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
@@ -134,7 +134,6 @@ public class TermDetails extends AppCompatActivity {
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -142,9 +141,9 @@ public class TermDetails extends AppCompatActivity {
                 }
                 end = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editEnd.setText(end);
-
             }
         };
+
         Calendar endCalendar = Calendar.getInstance();
 
         int year = endCalendar.get(Calendar.YEAR);
@@ -152,7 +151,6 @@ public class TermDetails extends AppCompatActivity {
         int day = endCalendar.get(Calendar.DAY_OF_MONTH);
 
         endDatePicker = new DatePickerDialog(TermDetails.this, endDateSetListener, year, month, day);
-
     }
 
     public void openEndDatePicker(View view) {
@@ -171,7 +169,6 @@ public class TermDetails extends AppCompatActivity {
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -189,7 +186,6 @@ public class TermDetails extends AppCompatActivity {
         int day = startCalendar.get(Calendar.DAY_OF_MONTH);
 
         startDatePicker = new DatePickerDialog(TermDetails.this, startDateSetListener, year, month, day);
-
     }
 
     public void openStartDatePicker(View view) {
@@ -246,5 +242,4 @@ public class TermDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(courseList);
     }
-
 }

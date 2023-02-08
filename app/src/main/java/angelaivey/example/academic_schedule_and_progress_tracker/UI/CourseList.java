@@ -32,11 +32,12 @@ public class CourseList extends AppCompatActivity {
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         id = getIntent().getIntExtra("id", -1);
         termID = getIntent().getIntExtra("termID", -1);
         repository = new Repository(getApplication());
-        //List<Course> allCourses = repository.getAllCourses();
         List<Course> courseList = new ArrayList<>();
+
         for (Course course : repository.getAllCourses()) {
             if (course.getTermID() == id) {
                 courseList.add(course);
@@ -44,8 +45,8 @@ public class CourseList extends AppCompatActivity {
         }
         courseAdapter.setCourses(courseList);
         courseAdapter.setTermID(termID);
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
 
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,5 +68,4 @@ public class CourseList extends AppCompatActivity {
         courseAdapter.setCourses(allCourses);
         courseAdapter.setTermID(termID);
     }
-
 }

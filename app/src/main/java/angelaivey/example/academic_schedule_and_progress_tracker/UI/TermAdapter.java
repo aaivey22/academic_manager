@@ -69,13 +69,11 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             holder.termItemTitle.setText(title);
             holder.termItemStart.setText(start);
             holder.termItemEnd.setText(end);
-
         } else {
             holder.termItemTitle.setText("No Term Title");
             holder.termItemStart.setText("No Term Start Date");
             holder.termItemEnd.setText("No Term End Date");
         }
-
     }
 
     public void setTerms(List<Term> terms) {

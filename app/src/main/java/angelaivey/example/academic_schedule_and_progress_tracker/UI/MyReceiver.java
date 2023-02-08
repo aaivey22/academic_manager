@@ -24,9 +24,11 @@ public class MyReceiver extends BroadcastReceiver {
     String channel_id_assessment_end = "assessmentEndChannel";
 
     static int notificationID;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String notificationType = intent.getStringExtra("NotificationType");
+
         if(Objects.equals(notificationType, "CourseStart")) {
             Toast.makeText(context, intent.getStringExtra("courseStartNotify"), Toast.LENGTH_LONG).show();
             createNotificationChannel(context, channel_id_course_start);
@@ -58,8 +60,6 @@ public class MyReceiver extends BroadcastReceiver {
             notificationManager.notify(notificationID++, n);
         }
         if(Objects.equals(notificationType, "AssessmentEnd")) {
-            Log.d("Options Menu", "if statement Clicked");
-
             Toast.makeText(context, intent.getStringExtra("assessmentEndNotify"), Toast.LENGTH_LONG).show();
             createNotificationChannel(context, channel_id_assessment_end);
             Notification n = new NotificationCompat.Builder(context, channel_id_assessment_end)
@@ -69,10 +69,6 @@ public class MyReceiver extends BroadcastReceiver {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(notificationID++, n);
         }
-
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-        //throw new UnsupportedOperationException("Not yet implemented");
     }
     private void createNotificationChannel(Context context, String CHANNEL_ID) {
         CharSequence name = context.getResources().getString(R.string.channel_name);
@@ -80,7 +76,6 @@ public class MyReceiver extends BroadcastReceiver {
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
         channel.setDescription(description);
-
         NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
     }

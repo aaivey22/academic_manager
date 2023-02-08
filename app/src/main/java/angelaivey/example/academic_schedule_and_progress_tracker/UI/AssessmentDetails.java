@@ -52,7 +52,6 @@ public class AssessmentDetails extends AppCompatActivity {
 
     Assessment assessment;
     Assessment currentAssessment;
-
     Repository repository;
 
     @Override
@@ -123,7 +122,6 @@ public class AssessmentDetails extends AppCompatActivity {
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -131,23 +129,18 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
                 end = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editEnd.setText(end);
-
             }
         };
         Calendar endCalendar = Calendar.getInstance();
-
         int year = endCalendar.get(Calendar.YEAR);
         int month = endCalendar.get(Calendar.MONTH);
         int day = endCalendar.get(Calendar.DAY_OF_MONTH);
-
         endDatePicker = new DatePickerDialog(AssessmentDetails.this, endDateSetListener, year, month, day);
-
     }
 
     public void openEndDatePicker(View view) {
         endDatePicker.show();
     }
-
 
     private void startDatePicker() {
         DatePickerDialog.OnDateSetListener startDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -161,7 +154,6 @@ public class AssessmentDetails extends AppCompatActivity {
                 } else {
                     formatMonth = String.valueOf((month));
                 }
-
                 if (day < 10) {
                     formatDay = String.format("0" + String.valueOf(day));
                 } else {
@@ -169,18 +161,14 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
                 start = formatMonth + "/" + formatDay + "/" + (year - 2000);
                 editStart.setText(start);
-
             }
         };
 
         Calendar startCalendar = Calendar.getInstance();
-
         int year = startCalendar.get(Calendar.YEAR);
         int month = startCalendar.get(Calendar.MONTH);
         int day = startCalendar.get(Calendar.DAY_OF_MONTH);
-
         startDatePicker = new DatePickerDialog(AssessmentDetails.this, startDateSetListener, year, month, day);
-
     }
 
     public void openStartDatePicker(View view) {
@@ -245,11 +233,9 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
                 repository.delete(currentAssessment);
                 Toast.makeText(AssessmentDetails.this, currentAssessment.getAssessmentTitle() + " was deleted", Toast.LENGTH_LONG).show();
-
                 Intent intent = new Intent(AssessmentDetails.this, TermList.class);
                 startActivity(intent);
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
