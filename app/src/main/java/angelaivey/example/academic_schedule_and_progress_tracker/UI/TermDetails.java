@@ -200,7 +200,8 @@ public class TermDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                this.finish();
+                Intent intentTerm = new Intent(TermDetails.this, TermList.class);
+                startActivity(intentTerm);
                 return true;
             case R.id.deleteTerm:
                 for (Term term : repository.getAllTerms()) {

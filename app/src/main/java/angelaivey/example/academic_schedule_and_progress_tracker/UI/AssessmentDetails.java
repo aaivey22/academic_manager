@@ -183,7 +183,8 @@ public class AssessmentDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                this.finish();
+                Intent intentAssessment = new Intent(AssessmentDetails.this, TermList.class);
+                startActivity(intentAssessment);
                 return true;
             case R.id.notificationStart:
                 String startDateFromScreen = editStart.getText().toString();

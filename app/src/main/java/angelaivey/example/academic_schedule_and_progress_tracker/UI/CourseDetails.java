@@ -155,13 +155,13 @@ public class CourseDetails extends AppCompatActivity {
                     repository.insert(course);
                     Intent intent = new Intent(CourseDetails.this, TermList.class);
                     startActivity(intent);
-                    //Toast.makeText(TermDetails.this, "Term is saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CourseDetails.this, "Course is saved", Toast.LENGTH_LONG).show();
                 } else {
                     course = new Course(id, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), editStatus.getText().toString(), editInstructor.getText().toString(), editNumber.getText().toString(), editEmail.getText().toString(), termID);
                     repository.update(course);
                     Intent intent = new Intent(CourseDetails.this, TermList.class);
                     startActivity(intent);
-                    //Toast.makeText(TermDetails.this, "Term is updated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CourseDetails.this, "Course is saved", Toast.LENGTH_LONG).show();
                 }
             }
         });
