@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,10 +107,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/courserecyclerview"
-        android:layout_width="375dp"
-        android:layout_height="526dp"
+        android:layout_width="701dp"
+        android:layout_height="528dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         app:layout_constraintRight_toRightOf="@id/scrollView"
         app:layout_constraintStart_toStartOf="parent"

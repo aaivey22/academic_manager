@@ -110,9 +110,14 @@ public class CourseDetails extends AppCompatActivity {
         if (!repository.getAllNotes().isEmpty()) {
             for (Note note : repository.getAllNotes()) {
                 if (note.getCourseID() == id) {
-                    noteBody = note.getNoteBody();
-                    noteID = note.getNoteID();
-                    editNote.setText(noteBody);
+                    if (note.getCourseID() == -1) {
+                        editNote.setText("");
+                        noteID = note.getNoteID();
+                    } else {
+                        noteBody = note.getNoteBody();
+                        noteID = note.getNoteID();
+                        editNote.setText(noteBody);
+                    }
                 }
             }
         }
@@ -138,27 +143,32 @@ public class CourseDetails extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editNote.getText().toString().length() > 0) {
-                    if (noteID <= 0) {
-                        courseNote = new Note(0, id, editNote.getText().toString());
-                        Log.d("Note", "Note added: " + editNote.getText().toString() + " ID: " + noteID);
-                        repository.insert(courseNote);
-                    } else {
-                        courseNote = new Note(noteID, id, editNote.getText().toString());
-                        Log.d("Note", "Note updated: " + editNote.getText().toString() + " ID: " + noteID);
-                        repository.update(courseNote);
-                    }
-                }
-
                 if (id == -1) {
                     course = new Course(0, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), editStatus.getText().toString(), editInstructor.getText().toString(), editNumber.getText().toString(), editEmail.getText().toString(), termID);
                     repository.insert(course);
+                    int courseID = 0;
+                    for (Course course : repository.getAllCourses()) {
+                        courseID++;
+                    }
+                    courseNote = new Note(0, courseID, editNote.getText().toString());
+                    Log.d("Note", "Note added: " + editNote.getText().toString() + " ID: " + noteID + " Course ID: " + courseID);
+                    repository.insert(courseNote);
+
                     Intent intent = new Intent(CourseDetails.this, TermList.class);
                     startActivity(intent);
                     Toast.makeText(CourseDetails.this, "Course is saved", Toast.LENGTH_LONG).show();
                 } else {
                     course = new Course(id, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), editStatus.getText().toString(), editInstructor.getText().toString(), editNumber.getText().toString(), editEmail.getText().toString(), termID);
                     repository.update(course);
+                    if (noteID <= 0) {
+                        courseNote = new Note(0, id, editNote.getText().toString());
+                        Log.d("Note", "Note added: " + editNote.getText().toString() + " ID: " + noteID + " Course ID: " + id);
+                        repository.insert(courseNote);
+                    } else {
+                        courseNote = new Note(noteID, id, editNote.getText().toString());
+                        Log.d("Note", "Note updated: " + editNote.getText().toString() + " ID: " + noteID);
+                        repository.update(courseNote);
+                    }
                     Intent intent = new Intent(CourseDetails.this, TermList.class);
                     startActivity(intent);
                     Toast.makeText(CourseDetails.this, "Course is saved", Toast.LENGTH_LONG).show();

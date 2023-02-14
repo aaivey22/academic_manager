@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="275dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,32 +30,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Course Title: " />
+                    android:padding="2dp"
+                    android:text="Course Title: "
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/textViewcoursetitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="enter title" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    android:hint="enter title"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Course Status: " />
+                    android:padding="2dp"
+                    android:text="Course Status: "
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/textViewcoursestatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="in progress, completed, dropped, or plan to take" />
+                    android:hint="in progress, completed, dropped, or plan to take"
+                    android:textSize="16sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -75,13 +74,6 @@
                     android:layout_height="wrap_content"
                     android:hint="enter or select start date"
                     android:onClick="openStartDatePicker" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,12 +123,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="enter instructor phone" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -172,14 +158,13 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="2dp">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/savecourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:text="save course" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
@@ -199,7 +184,7 @@
         android:layout_width="375dp"
         android:layout_height="526dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         app:layout_constraintRight_toRightOf="@id/scrollView"
         app:layout_constraintStart_toStartOf="parent"
